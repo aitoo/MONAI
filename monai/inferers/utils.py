@@ -228,8 +228,10 @@ def sliding_window_inference(
             ).to(sw_device)
             if condition is not None:
                 win_condition = torch.cat(
-                    [condition[tuple(win_slice) if isinstance(win_slice, list) else win_slice] for win_slice in
-                     unravel_slice]
+                    [
+                        condition[tuple(win_slice) if isinstance(win_slice, list) else win_slice]
+                        for win_slice in unravel_slice
+                    ]
                 ).to(sw_device)
                 kwargs["condition"] = win_condition
         else:
